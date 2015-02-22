@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
 
-  def index
-    @user = User.all
+  def home
+    @user = User.find(params[:id])
   end
 
-  def create
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def sign_up
+    @user = User.new
   end
 end
