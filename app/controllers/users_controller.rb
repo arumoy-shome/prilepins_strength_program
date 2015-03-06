@@ -18,10 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def sign_in
-     @user = User.new
-  end
-
   private
 
     def user_params

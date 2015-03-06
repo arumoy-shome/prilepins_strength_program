@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   #users routes
   resources 'users'
-  match '/signup', to: 'users#new', via: 'get'
 
   #sessions routes
   resources 'sessions', only: [:new, :create, :destroy]

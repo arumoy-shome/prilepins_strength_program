@@ -11,6 +11,7 @@
       = f.label :password
       = f.password_field :password, class: "form-control"
 
-    = f.submit "Sing In", class: "btn btn-primary btn-lg"
+    = f.submit "Sign In", class: "btn btn-primary btn-lg"
 
-  %p New User?= link_to "Sign Up Now!", signup_path
+  %p New User?
+  = link_to "Sign Up Now!", new_user_path
