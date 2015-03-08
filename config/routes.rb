@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
 #static_pages routes
   root to: 'static_pages#home'
-  get 'about', to: 'static_pages#about'
+  match 'about', to: 'static_pages#about', via: 'get'
+  match 'contact', to: 'static_pages#contact', via: 'get'
 
   #users routes
   resources 'users'
