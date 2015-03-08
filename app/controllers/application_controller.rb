@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def full_title user, title
-    base_title = "Prilepin's Strength Program"
+    base_title = "Prilepin's Strength"
     if user.empty? || title.empty?
       return base_title
     else
