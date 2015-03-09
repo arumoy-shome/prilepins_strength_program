@@ -9,7 +9,7 @@ RSpec.describe "StaticPages", type: :request do
     end
 
     it "should have the content 'Hello there!'" do
-      visit '/'
+      visit root_path
       expect(page).to have_content('Hello there!')
     end
 
@@ -22,12 +22,12 @@ RSpec.describe "StaticPages", type: :request do
   describe "About page" do
 
     it "should have the right title" do
-      visit '/about'
+      visit about_path
       expect(page).to have_title("About")
     end
 
     it "should have the content 'About Us'" do
-      visit '/about'
+      visit about_path
       expect(page).to have_content('About Us')
     end
   end
@@ -35,12 +35,12 @@ RSpec.describe "StaticPages", type: :request do
   describe "Contact page" do
 
     it "should have the right title" do
-      visit '/contact'
+      visit contact_path
       expect(page).to have_title("Contact")
     end
 
     it "should have the content 'Contact Us'" do
-      visit '/contact'
+      visit contact_path
       expect(page).to have_content('Contact Us')
     end
   end

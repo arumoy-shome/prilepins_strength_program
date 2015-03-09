@@ -36,8 +36,6 @@ guard :rspec, cmd: "bundle exec rspec" do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
-  # Feel free to open issues for suggestions and improvements
-
   # RSpec files
   rspec = dsl.rspec
   watch(rspec.spec_helper) { rspec.spec_dir }
@@ -76,13 +74,26 @@ guard :rspec, cmd: "bundle exec rspec" do
   end
 end
 
-guard :spork, :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch('config/environments/test.rb')
-  watch(%r{^config/initializers/.+\.rb$})
-  watch('Gemfile.lock')
-  watch('spec/spec_helper.rb') { :rspec }
-  watch('test/test_helper.rb') { :test_unit }
-  watch(%r{features/support/}) { :cucumber }
+# Sample guardfile block for Guard::Haml
+# You can use some options to change guard-haml configuration
+# output: 'public'                   set output directory for compiled files
+# input: 'src'                       set input directory with haml files
+# run_at_start: true                 compile files when guard starts
+# notifications: true                send notifictions to Growl/libnotify/Notifu
+# haml_options: { ugly: true }    pass options to the Haml engine
+
+guard :haml do
+  watch(/^.+(\.html\.haml)$/)
+end
+
+guard :bundler do
+  require 'guard/bundler'
+  require 'guard/bundler/verify'
+  helper = Guard::Bundler::Verify.new
+
+  files = ['Gemfile']
+  files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
+
+  # Assume files are symlinked from somewhere
+  files.each { |file| watch(helper.real_path(file)) }
 end
