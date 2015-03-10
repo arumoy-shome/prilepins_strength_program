@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt-ruby'
 gem 'bootstrap-sass'
 
-group :development do
+group :development, :test do
   gem 'guard-rspec', require: false
   gem 'guard-haml', require: false
   gem 'guard-bundler', require: false

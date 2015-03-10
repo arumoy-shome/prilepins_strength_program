@@ -1,47 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe "StaticPages", type: :request do
+  subject{page}
+  shared_examples_for "All StaticPages" do
+      it{should have_selector 'h1', text: heading}
+      it{should have_title title}
+  end
+
   describe "Home page" do
-
-    it "should have the right title" do
-      visit '/'
-      expect(page).to have_title("Home")
-    end
-
-    it "should have the content 'Hello there!'" do
-      visit root_path
-      expect(page).to have_content('Hello there!')
-    end
-
-    # it "should have a sign up button" do
-    #   visit '/'
-    #   expect(page).to have
-    # end
+    before{visit root_path}
+    let(:heading) {"Hello there!"}
+    let(:title) {"Home"}
+    # it{should have_input("Sign Up")}
+    it_should_behave_like "All StaticPages"
   end
 
   describe "About page" do
-
-    it "should have the right title" do
-      visit about_path
-      expect(page).to have_title("About")
-    end
-
-    it "should have the content 'About Us'" do
-      visit about_path
-      expect(page).to have_content('About Us')
-    end
+    before{visit about_path}
+    let(:heading) {"About Us"}
+    let(:title) {"About"}
+    it_should_behave_like "All StaticPages"
   end
 
   describe "Contact page" do
-
-    it "should have the right title" do
-      visit contact_path
-      expect(page).to have_title("Contact")
-    end
-
-    it "should have the content 'Contact Us'" do
-      visit contact_path
-      expect(page).to have_content('Contact Us')
-    end
+    before{visit contact_path}
+    let(:heading) {"Contact Us"}
+    let(:title) {"Contact"}
+    it_should_behave_like "All StaticPages"
   end
 end

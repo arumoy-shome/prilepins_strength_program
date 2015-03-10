@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   match 'contact', to: 'static_pages#contact', via: 'get'
 
   #users routes
-  resources 'users'
-
+  resources 'users', except: [:new]
+  match '/signup', to: 'users#new', via: 'get', as: 'signup'
   #sessions routes
   resources 'sessions', only: [:new, :create, :destroy]
   match '/signin', to: 'sessions#new', via: 'get'
