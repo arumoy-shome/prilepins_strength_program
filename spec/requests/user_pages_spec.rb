@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "UserPages", type: :request do
   subject{page}
 
-  describe "Sign up page" do
+  describe "SignUp page" do
     before{visit signup_path}
 
     it{should have_content "Sign Up"}
