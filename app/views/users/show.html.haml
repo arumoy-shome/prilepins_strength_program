@@ -1,6 +1,7 @@
+-provide :title, @user.user_name
 .row
   %aside.span4
     %section
       %h1
-        = gravatar_for @user
+        -# = gravatar_for @user
         = @user.user_name

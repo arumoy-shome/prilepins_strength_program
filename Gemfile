@@ -29,4 +29,5 @@ group :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'factory_girl_rails'
 end
