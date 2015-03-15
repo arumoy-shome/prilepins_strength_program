@@ -24,6 +24,12 @@ RSpec.describe User, type: :model do
   end
 
 #email tests
+
+describe "when email is nil"do
+  before{@user.email = nil}
+  it{should_not be_valid}
+end
+
   describe "when email format is invalid" do
     it "should be invalid" do
       addresses = %w[user@foo,com user_at_foo_.org example.user@foo. foo@bar_baz.com foo@bar+baz.com foo@bar..com]

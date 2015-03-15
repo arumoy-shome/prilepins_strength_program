@@ -14,3 +14,13 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "static_pages";
+
+ .alert{
+   margin-top: 75px;
+   &.alert-error{
+     margin: red 1px solid;
+   }
+   &.alert-success{
+     margin: green 1px solid;
+   }
+ }

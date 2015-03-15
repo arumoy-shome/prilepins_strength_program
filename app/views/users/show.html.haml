@@ -5,3 +5,7 @@
       %h1
         -# = gravatar_for @user
         = @user.user_name
+
+%ul
+  %li= link_to "Profile", user_path(@user)
+  %li= link_to "Sign Out", signout_path
