@@ -10,6 +10,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'haml-rails'
 gem 'bootstrap-sass'
+gem 'refills'
+gem 'bourbon'
+gem 'neat'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
@@ -25,6 +28,7 @@ end
 group :test do
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'shoulda-matchers', require: false
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
 end
