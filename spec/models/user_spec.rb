@@ -13,63 +13,46 @@ RSpec.describe User, type: :model do
   context "with invalid credentials" do
     context "with invalid email" do
       describe "not present" do
-        it "should be invalid" do
-          @user.update(email: "")
-          expect(@user).to be_invalid
-        end
+        it{should validate_presence_of(:email)}
       end
 
       describe "invalid format" do
         before{@invalid_addresses = %w[user@foo,com user_at_foo.org example.user@foo.]}
         it "should be invalid" do
+          #for should_not, shoulda-matcha does not test all assestions
+          #if the first one fails
+          #thus test all assertions individually
           @invalid_addresses.each do |address|
-            @user.update(email: address)
-            expect(@user).to be_invalid
+            should_not allow_value(address).for(:email)
           end
         end
       end
 
       context "not unique" do
-        describe "lower case" do
-          before{@duplicate_email = @user.email}
-          it "should be invalid" do
-            expect(User.create(email: @duplicate_email)).to be_invalid
-          end
+        it{should validate_uniqueness_of(:email)}
+      end
+    end
+
+    context "with invalid" do
+      context "password" do
+        describe "not present" do
+          it{should validate_presence_of(:password)}
         end
 
-        describe "upper case" do
-          before{@duplicate_upcase_email = @user.email.upcase}
-          it "should be invalid" do
-            expect(User.create(email: @duplicate_upcase_email)).to be_invalid
-          end
+        describe "length too short" do
+          it{should validate_length_of(:password)}
+        end
+      end
+
+      context "password_confirmation" do
+        describe "not present" do
+          it{should validate_presence_of(:password)}
         end
       end
     end
 
-    context "with invalid password" do
-      describe "not present" do
-        it "should be invalid" do
-          @user.update(password: "")
-          expect(@user).to be_invalid
-        end
-
-      describe "length too short" do
-        it "should be invalid" do
-          @user.update(password: "secret")
-          expect(@user).to be_invalid
-        end
-
-      describe "password and password_confirmation do not match" do
-        it "should be invalid" do
-          @user.update(password: "secret00", password_confirmation: "secrete00")
-          expect(@user).to be_invalid
-        end
-      end
-      end
-      end
+    describe "password and password_confirmation do not match" do
+      it{should validate_confirmation_of(:password)}
     end
   end
-
-
-
 end
