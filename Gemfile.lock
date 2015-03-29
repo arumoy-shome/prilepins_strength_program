@@ -91,6 +91,7 @@ GEM
     formatador (0.2.5)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    gravatar_image_tag (1.2.0)
     guard (2.12.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -283,6 +284,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   factory_girl_rails
+  gravatar_image_tag
   guard-rspec
   haml-rails
   jbuilder (~> 2.0)

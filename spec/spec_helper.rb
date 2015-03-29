@@ -1,7 +1,9 @@
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'shoulda/matchers'
-require 'support/factory_girl'
+
+#include everything in support
+Dir["./spec/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

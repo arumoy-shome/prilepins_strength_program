@@ -8,14 +8,23 @@ RSpec.describe UsersController, type: :controller do
       @user = create(:user)
       get :show, id: @user
     end
+    subject{response}
 
-    describe "GET 'show'" do
-      it "should be successful" do
-        expect(response).to be_success
-      end
+    context "views" do
+      it{should render_template(:show)}
+      it_behaves_like "application template"
+      it{should have_css("img.gravatar")}
+      it{should have_selector('h3', text: @user.email)}
+      it{should have_selector('table')}
+    end
 
-      it "should find the right user" do
-        expect(assigns(:user)).to be == @user
+    context "controller" do
+      describe "GET 'show'" do
+        it{should be_success}
+
+        it "should find the right user" do
+          expect(assigns(:user)).to be == @user
+        end
       end
     end
   end

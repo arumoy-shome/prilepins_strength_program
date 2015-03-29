@@ -1,0 +1,22 @@
+.row
+  .col-md-2
+    .sidebar.profile
+      %img.gravatar= gravatar_image_tag(@user.email)
+      %h3= @user.email
+      %h3 Current squat max
+      %h3 Current bench max
+      %h3 Current deadlift max
+  .col-md-10
+    .container-fluid
+      %table.table.table-striped
+        %tr
+          %th Week
+          %th Day 1
+          %th Day 2
+          %th Day 3
+        -for num in (1..5)
+          %tr
+            %td num
+            %td Bench
+            %td Deadlift
+            %td Squat
