@@ -13,9 +13,6 @@ RSpec.describe UsersController, type: :controller do
     context "views" do
       it{should render_template(:show)}
       it_behaves_like "application template"
-      it{should have_css("img.gravatar")}
-      it{should have_selector('h3', text: @user.email)}
-      it{should have_selector('table')}
     end
 
     context "controller" do
