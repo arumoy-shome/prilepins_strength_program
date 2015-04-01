@@ -18,10 +18,6 @@ RSpec.describe "users/show", type: :view do
       describe "table" do
         it{should have_selector("div.container-fluid>table.table.table-striped")}
       end
-
-      describe "header" do
-      end
-
     end
   end
 end
