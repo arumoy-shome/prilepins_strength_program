@@ -10,13 +10,13 @@ RSpec.describe User, type: :model do
   it{should respond_to(:password_confirmation)}
   it{should be_valid}
 
-  context "with invalid credentials" do
-    context "with invalid email" do
-      describe "not present" do
+  describe "with invalid credentials" do
+    describe "with invalid email" do
+      context "not present" do
         it{should validate_presence_of(:email)}
       end
 
-      describe "invalid format" do
+      context "invalid format" do
         before{@invalid_addresses = %w[user@foo,com user_at_foo.org example.user@foo.]}
         it "should be invalid" do
           #for should_not, shoulda-matcha does not test all assestions
@@ -33,26 +33,24 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "with invalid" do
-      context "password" do
-        describe "not present" do
+    describe "with invalid password" do
+      context "not present" do
           it{should validate_presence_of(:password)}
-        end
-
-        describe "length too short" do
-          it{should validate_length_of(:password)}
-        end
       end
 
-      context "password_confirmation" do
-        describe "not present" do
-          it{should validate_presence_of(:password)}
-        end
+      context "length too short" do
+        it{should validate_length_of(:password)}
       end
     end
 
-    describe "password and password_confirmation do not match" do
-      it{should validate_confirmation_of(:password)}
+    describe "with invalid password confirmation" do
+      context "not present" do
+        it{should validate_presence_of(:password)}
+      end
+
+      context "does not match password" do
+        it{should validate_confirmation_of(:password)}
+      end
     end
   end
 end

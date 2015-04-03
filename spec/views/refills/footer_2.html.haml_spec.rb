@@ -4,24 +4,30 @@ RSpec.describe "refills/_footer_2", type: :view do
   before{render}
   subject{rendered}
 
-  context "content" do
-    describe "logo" do
-      it{should have_selector("footer.footer-2>div.footer-logo>img")}
-    end
+  describe "content" do
+    it{should have_selector("footer.footer-2>div.footer-logo>img")}
 
     context "links" do
-      describe "primary links" do
+      context "primary" do
         let(:selector){"footer.footer-2>ul>li>a"}
         it{should have_selector(selector, text: "About")}
         it{should have_selector(selector, text: "Contact")}
-        it{should have_selector(selector, text: "Products")}
       end
 
-      describe "secondary links" do
+      context "secondary" do
         let(:selector){"footer.footer-2>div.footer-secondary-links>ul>li>a"}
         it{should have_selector(selector, text: "Terms and Conditions")}
         it{should have_selector(selector, text: "Privacy Policy")}
       end
+
+      context "social" do
+        let(:selector){"footer.footer-2>div.footer-secondary-links>ul.footer-social>li>a>img"}
+        it{should have_selector(selector)}
+      end
     end
+  end
+
+  describe "behaviour" do
+    #TODO #TEST: TEST ALL LINKS RENDER CORRECT PAGES
   end
 end
