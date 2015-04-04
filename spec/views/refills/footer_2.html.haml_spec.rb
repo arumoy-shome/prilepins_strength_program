@@ -26,8 +26,4 @@ RSpec.describe "refills/_footer_2", type: :view do
       end
     end
   end
-
-  describe "behaviour" do
-    #TODO #TEST: TEST ALL LINKS RENDER CORRECT PAGES
-  end
 end

@@ -1,5 +1,6 @@
 require 'rspec/rails'
 require 'capybara/rspec'
+require 'capybara/rails'
 require 'shoulda/matchers'
 
 #include everything in support
