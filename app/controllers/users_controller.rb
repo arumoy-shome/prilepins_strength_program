@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show]
+  before_action :authenticate_user!
+  before_action :store_location
   def index
-    @all_users = User.all
+    @all_users = User.paginate(page: params[:page])
   end
 
   def show
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
 
   private
 
-  def authentication
-    redirect_to(new_user_session_path) unless user_signed_in?
+  def store_location
+    session[:return_to] = request.fullpath
   end
 end

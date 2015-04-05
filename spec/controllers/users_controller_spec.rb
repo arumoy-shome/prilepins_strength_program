@@ -37,9 +37,6 @@ RSpec.describe UsersController, type: :controller do
       it{should be_success}
       it{should render_template(:index)}
       it_behaves_like "application template"
-      it "should find all users" do
-        expect(assigns(:all_users).count).to be == all_users.count
-      end
     end
 
     context "for not signed-in users" do
