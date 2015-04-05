@@ -14,6 +14,7 @@ gem 'neat'
 gem 'refills'
 gem 'bootstrap-sass'
 gem 'gravatar_image_tag'
+gem 'will_paginate'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do

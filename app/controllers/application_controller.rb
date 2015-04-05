@@ -4,10 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    user_path(@user)
+    session[:return_to] || user_path(@user)
+    clear_return_to
   end
 
   def after_sign_out_path_for(resource)
     home_path
+  end
+
+  private
+
+  def clear_return_to
+    session[:return_to] = nil
   end
 end

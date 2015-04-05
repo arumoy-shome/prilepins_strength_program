@@ -19,6 +19,8 @@
                 %a= link_to("Profile", user_path(current_user))
               %li
                 %a= link_to("Settings", edit_user_registration_path(current_user))
+              %li
+                %a= link_to("Users", all_users_path)
           %li.nav-link
             %a= link_to("Sign Out", destroy_user_session_path, method: 'delete')
         - else
