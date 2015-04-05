@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get "/about", to: "static_pages#about", as: 'about'
   get "/contact", to: "static_pages#contact", as: 'contact'
   #users routes
-  resources :users, only: [:show]
+  resources :users, only: [:show, :destroy]
   get "/all_users", to: "users#index", as: "all_users"
 end

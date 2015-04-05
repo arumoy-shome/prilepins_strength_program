@@ -44,4 +44,28 @@ RSpec.describe UsersController, type: :controller do
       it{should redirect_to(new_user_session_path)}
     end
   end
+
+  describe "DELETE 'destroy'" do
+    before{delete(:destroy, id: user)}
+
+    context "for signed in users" do
+      context "for admin users" do
+        let(:admin){User.create(email: "admin@user.com", password: "secret00", password_confirmation: "secret00", admin: true)}
+        before{sign_in(admin)}
+
+        it "should destroy the user" do
+          expect(lambda{delete(:destroy, id: user)}).to change(User, :count).by(-1)
+        end
+      end
+
+      context "for non admin users" do
+        before{sign_in(user)}
+        it{should redirect_to(new_user_session_path)}
+      end
+    end
+
+    context "for non signed in users" do
+      it{should redirect_to(new_user_session_path)}
+    end
+  end
 end

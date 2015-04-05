@@ -1,3 +1,8 @@
-%li.list-group-item.h3
-  = gravatar_for(user, size: 30)
-  = link_to(user.email, user)
+%li.row.list-group-item.h3
+  .col-md-1
+    = gravatar_for(user, size: 30)
+  .col-md-10
+    = link_to(user.email, user)
+  .col-md-1
+    - if(current_user.admin?)
+      = link_to("delete", user, method: 'delete', confirm: "Are you sure?", title: "Delete #{user.email}")
