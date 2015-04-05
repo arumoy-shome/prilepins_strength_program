@@ -53,4 +53,13 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "admin attribute" do
+    it{should respond_to(admin)}
+    it{should_not be_admin}
+    it "should be convertible to admin" do
+      @user.toggle!(:admin)
+      @user.should be_admin
+    end
+  end
 end
