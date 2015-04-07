@@ -30,6 +30,7 @@ end
 group :test do
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'rspec-given'
   gem 'shoulda-matchers', require: false
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'

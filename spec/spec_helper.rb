@@ -2,6 +2,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'shoulda/matchers'
+require 'rspec-given'
 
 #include everything in support
 Dir["./spec/support/**/*.rb"].each {|f| require f}
