@@ -4,5 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts
+  validates(:password_confirmation, presence: true)
+  has_many :posts, dependent: :destroy
 end
