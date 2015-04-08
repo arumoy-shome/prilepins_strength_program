@@ -1,71 +1,66 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user){create(:user)}
-  subject{response}
+  Given(:user){create(:user)}
   render_views
 
   describe "GET 'show'" do
-    context "for signed in users" do
-      before do
+    context "signed in users" do
+      When do
         sign_in(user)
         get(:show, id: user)
       end
 
-      it{should be_success}
-      it{should render_template(:show)}
-      it_behaves_like "application template"
-      it "should find the right user" do
-        expect(assigns(:user)).to be == user
-      end
+      Then{expect(response).to be_success}
+        And{expect(response).to render_template(:show)}
+        And{expect(assigns(:user)).to be == user}
     end
 
-    context "for not signed in users" do
-      before{get :show, id: user}
-      it{should redirect_to(new_user_session_path)}
+    context "non signed in users" do
+      When{get :show, id: user}
+
+      Then{expect(response).to redirect_to(new_user_session_path)}
     end
   end
 
   describe "GET 'index'" do
-    context "for signed in users" do
-      let(:all_users){User.all}
-      before do
+    context "signed in users" do
+      Given(:all_users){User.all}
+      When do
         sign_in(user)
         get(:index, id: user)
       end
 
-      it{should be_success}
-      it{should render_template(:index)}
-      it_behaves_like "application template"
+      Then{expect(response).to be_success}
+        And{expect(response).to render_template(:index)}
     end
 
-    context "for not signed-in users" do
-      before{get :index}
-      it{should redirect_to(new_user_session_path)}
+    context "non signed-in users" do
+      When{get :index}
+      Then{expect(response).to redirect_to(new_user_session_path)}
     end
   end
 
   describe "DELETE 'destroy'" do
-    before{delete(:destroy, id: user)}
-
-    context "for signed in users" do
+    describe "signed in users" do
       context "for admin users" do
-        let(:admin){User.create(email: "admin@user.com", password: "secret00", password_confirmation: "secret00", admin: true)}
-        before{sign_in(admin)}
-
-        it "should destroy the user" do
-          expect(lambda{delete(:destroy, id: user)}).to change(User, :count).by(-1)
-        end
+        Given(:admin){User.create(email: "admin@user.com", password: "secret00", password_confirmation: "secret00", admin: true)}
+        Given{sign_in(admin)}
+        When(:delete_user){delete(:destroy, id: user)}
+        # FIXME: after deleting a user it cant be found but User.count remains unchanged
+        Then{expect(delete_user).to change(User, :count).by(-1)}
       end
 
       context "for non admin users" do
-        before{sign_in(user)}
-        it{should redirect_to(new_user_session_path)}
+        Given{sign_in(user)}
+        When{delete(:destroy, id: user)}
+        Then{expect(response).to redirect_to(home_path)}
       end
     end
 
-    context "for non signed in users" do
-      it{should redirect_to(new_user_session_path)}
+    describe "non signed in users" do
+      When{delete(:destroy, id: user)}
+      Then{expect(response).to redirect_to(new_user_session_path)}
     end
   end
 end
