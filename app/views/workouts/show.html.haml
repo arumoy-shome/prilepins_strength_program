@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Area:
+  = @workout.area
+%p
+  %b Movements:
+  = @workout.movements
+%p
+  %b Notes:
+  = @workout.notes
+%p
+  %b Duration:
+  = @workout.duration
+
+= link_to 'Edit', edit_workout_path(@workout)
+\|
+= link_to 'Back', workouts_path

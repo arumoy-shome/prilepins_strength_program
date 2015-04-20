@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :workouts
+
   devise_for :users, only: [:sessions, :registrations]
   #static pages routes
   root to: "static_pages#home", as: 'home'

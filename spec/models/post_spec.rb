@@ -6,18 +6,18 @@ RSpec.describe Post, type: :model do
   describe "validations" do
     context "no user_id" do
       When(:invalid_post){Post.create(content: "This is an invalid post")}
-      Then{expect(invalid_post).to be_invalid}
+      Then{expect(invalid_post).to be_false}
     end
 
     describe "invalid content" do
       context "no content" do
-        When(:no_content_post){user.posts.create(content: "")}
-        Then{expect(no_content_post).to be_invalid}
+        When(:no_content_post){user.posts.create(content: nil)}
+        Then{expect(no_content_post).to be_false}
       end
 
       context "long content" do
         When(:long_post){user.posts.create(content: "a"*141)}
-        Then{expect(long_post).to be_invalid}
+        Then{expect(long_post).to be_false}
       end
     end
   end

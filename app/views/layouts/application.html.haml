@@ -7,11 +7,9 @@
     = csrf_meta_tags
   %body
     =render 'refills/centered_navigation'
-    .container
+    .container#main-body.clearfix
       %p.notice= notice
       %p.alert= alert
-      - flash.each do |key, value|
-        %p.alert= "#{key}: #{value}"
       = yield
     =render 'refills/footer_2'
   = debug(params) if Rails.env.development?

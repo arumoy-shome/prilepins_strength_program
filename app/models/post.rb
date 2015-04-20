@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessor :content
+  attr_reader :user_id
   belongs_to :user
   default_scope{order('created_at DESC')}
 
