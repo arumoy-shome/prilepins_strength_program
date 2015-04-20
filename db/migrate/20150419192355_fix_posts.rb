@@ -1,5 +1,8 @@
-class CreatePosts < ActiveRecord::Migration
+require_relative '20150405091935_create_posts'
+class FixPosts < ActiveRecord::Migration
   def change
+    revert CreatePosts
+
     create_table :posts do |t|
       t.belongs_to :user, index: true
       t.string :content

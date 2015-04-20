@@ -25,6 +25,8 @@ group :development, :test do
   gem 'devise'
   gem 'guard-rspec'
   gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'faker'
+  gem 'pry-rails', '~> 0.3.4'
 end
 
 group :test do

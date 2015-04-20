@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
   validates(:password_confirmation, presence: true)
   has_many :posts, dependent: :destroy
+
+  serialize :current_max
 end
