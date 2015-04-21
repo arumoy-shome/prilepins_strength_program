@@ -23,5 +23,6 @@
   .row.posts
     .col-md-10.col-md-offset-1
       - unless @user.posts.empty?
-        = render @user.posts.all
+        %ul.list-group
+          -# = render @posts
         = will_paginate @posts
