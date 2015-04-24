@@ -15,6 +15,7 @@ gem 'refills'
 gem 'bootstrap-sass'
 gem 'gravatar_image_tag'
 gem 'will_paginate'
+gem 'simple_form', '~> 3.1.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do

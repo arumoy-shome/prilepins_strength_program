@@ -1,27 +1,8 @@
 %h1 Listing workouts
 
-%table
-  %thead
-    %tr
-      %th Area
-      %th Movements
-      %th Notes
-      %th Duration
-      %th
-      %th
-      %th
+= will_paginate(@workouts)
+%ul.list-group
+  = render @workouts
+= will_paginate(@workouts)
 
-  %tbody
-    - @workouts.each do |workout|
-      %tr
-        %td= workout.area
-        %td= workout.movements
-        %td= workout.notes
-        %td= workout.duration
-        %td= link_to 'Show', workout
-        %td= link_to 'Edit', edit_workout_path(workout)
-        %td= link_to 'Destroy', workout, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Workout', new_workout_path
+= link_to 'New Workout', new_user_workout_path
