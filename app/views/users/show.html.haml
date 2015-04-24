@@ -22,7 +22,7 @@
             %td Squat
   .row.posts
     .col-md-10.col-md-offset-1
-      - unless @user.posts.empty?
+      - unless @posts.empty?
         %ul.list-group
-          -# = render @posts
+          = render @posts
         = will_paginate @posts

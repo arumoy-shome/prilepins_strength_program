@@ -1,0 +1,7 @@
+%li.row.list-group-item.h3
+  .col-md-9.col-md-offset-1
+    = post.content
+    %br
+    = time_ago_in_words(post.created_at) + " ago"
+  .col-md-1
+    = link_to(edit_user_post_path, "edit")
