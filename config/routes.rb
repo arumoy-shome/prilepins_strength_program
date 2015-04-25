@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #users routes
   get "/all_users", to: "users#index", as: "all_users"
   resources :users, only: [:show, :destroy] do
-     resources :posts
+     resources :posts, only: [:create, :destroy]
      resources :workouts
    end
 
