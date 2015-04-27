@@ -20,9 +20,3 @@
             %td Bench
             %td Deadlift
             %td Squat
-  .row.posts
-    .col-md-10.col-md-offset-1
-      - unless @posts.empty?
-        %ul.list-group
-          = render @posts
-        = will_paginate @posts
