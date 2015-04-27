@@ -1,22 +1,7 @@
-= form_for @workout do |f|
-  - if @workout.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@workout.errors.count, "error")} prohibited this workout from being saved:"
-      %ul
-        - @workout.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for(@workout, url: user_workouts_path(@workout.user_id), html: { class: 'form-horizontal' })  do |form|
 
-  .field
-    = f.label :area
-    = f.text_field :area
-  .field
-    = f.label :movements
-    = f.text_field :movements
-  .field
-    = f.label :notes
-    = f.text_area :notes
-  .field
-    = f.label :duration
-    = f.text_field :duration
-  .actions
-    = f.submit 'Save'
+  = form.input :area
+  = form.input :work
+  = form.input :notes
+  = form.input :duration
+  = form.submit

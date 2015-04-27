@@ -1,0 +1,9 @@
+%li.row.list-group-item.h3
+  .col-md-8.col-md-offset-1
+    = workout.area
+    %br
+    = workout.created_at
+  .col-md-1
+    = link_to("delete", user_workout_path(workout.user_id, workout.id), method: 'delete', confirm: "Are you sure?", title: "Delete workout")
+  .col-md-1
+    = link_to("edit", edit_user_workout_path(workout.user_id, workout.id))

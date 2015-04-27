@@ -24,15 +24,13 @@ class WorkoutsController < ApplicationController
   # POST /workouts
   # POST /workouts.json
   def create
-    @workout = Workout.new(workout_params)
+    @workout = current_user.workouts.new(workout_params)
 
     respond_to do |format|
       if @workout.save
-        format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
-        format.json { render :show, status: :created, location: @workout }
+        format.html { redirect_to user_workouts_path(current_user), notice: 'Workout was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @workout.errors, status: :unprocessable_entity }
       end
     end
   end

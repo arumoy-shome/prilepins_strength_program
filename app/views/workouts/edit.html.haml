@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @workout
+= link_to 'Show', user_workout_path(params[:user_id], params[:id])
 \|
-= link_to 'Back', user_workouts_path
+= link_to 'Back', user_workouts_path(current_user)
